@@ -23,7 +23,18 @@ let x = 10;
 let y = 25;
 let op = '*';
 
-console.log(operate(x, y, op));
+// DOM Manipulation
+
+const numberContainer = document.querySelector("#number-container");
+
+// Create grid of numbers
+
+for (let i = 1; i < 10; ++i) {
+  const grid = document.createElement("div");
+  document.textContent = i;
+  grid.classList.add("number-button");
+  numberContainer.appendChild(grid);
+}
 
 
 
