@@ -31,9 +31,10 @@ const numberContainer = document.querySelector("#number-container");
 
 for (let i = 1; i < 10; ++i) {
   const grid = document.createElement("div");
-  grid.classList.add("number-button");
+  grid.classList.add("num-" + i);
   grid.textContent = i;
   numberContainer.appendChild(grid);
+
 }
 
 

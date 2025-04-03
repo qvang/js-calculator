@@ -18,7 +18,8 @@ body {
   width: 400px;
   height: 100px;
   display: flex;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  margin-top: 50px;
   ;
 }
 
@@ -29,7 +30,15 @@ body {
   height: 400px;
 }
 
-.number-button {
+.num-1,
+.num-2,
+.num-3,
+.num-4,
+.num-5,
+.num-6,
+.num-7,
+.num-8,
+.num-9 {
   height: 100px;
   width: 100px;
   background-color: darkgray;
