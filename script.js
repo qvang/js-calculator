@@ -1,5 +1,6 @@
 "use scrict"
 
+// Calculator functions
 function add(x, y) {
   return x + y;
 }
@@ -14,7 +15,7 @@ function divide(x, y) {
 }
 
 function operate(x, y, op) {
-  switch(op) {
+  switch (op) {
     case '+':
       return add(x, y);
     case '-':
@@ -28,7 +29,6 @@ function operate(x, y, op) {
   }
 }
 
-console.log(operate(10, 20, '+'));
 
 
 
