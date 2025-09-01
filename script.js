@@ -1,8 +1,5 @@
 "use scrict"
 
-let x = 0;
-let y = 0;
-
 // Calculator functions
 function add(x, y) {
   return x + y;
@@ -32,11 +29,24 @@ function operate(x, y, op) {
   }
 }
 
+let firstNum = 0;
+let secondNum = 0;
+let result = 0;
+let opps = '';
+
 const calculatorBody = document.querySelector("#calculator-body");
 
 // Calculator Display
 const display = calculatorBody.firstElementChild;
-display.textContent = x;
+display.textContent = firstNum;
+
+// Function to update display
+function updateDisplay() {
+  firstNum = 0;
+  display.textContent = firstNum;
+}
+
+
 
 // Select all numbers
 const numberContainer = document.querySelectorAll('.number');
@@ -56,15 +66,16 @@ const nine = numberContainer[8];
 function calculatorInput(btn, i) {
 
   btn.onclick = () => {
-    if (x == 0) {
-      x = i;
-      display.textContent = x;
+    if (firstNum == 0) {
+      firstNum = i;
+      display.textContent = firstNum;
     }
     else {
-      x = x * 10 + i;
-      display.textContent = x;
+      firstNum = firstNum * 10 + i;
+      display.textContent = firstNum;
     }
-  };
+
+  }
 }
 
 // Runs function on button press
@@ -81,6 +92,98 @@ calculatorInput(nine, 9);
 // zero
 const zero = document.querySelector('.zero');
 calculatorInput(zero, 0);
+
+const operatorContainer = document.querySelectorAll('.operator');
+const addition = operatorContainer[0];
+const subtraction = operatorContainer[1];
+const times = operatorContainer[2];
+const division = operatorContainer[3];
+const equals = operatorContainer[4];
+
+// Calculation
+let repeat = false;
+
+addition.onclick = () => {
+  if (opps != '') {
+    result += operate(secondNum, firstNum, opps);
+    opps = '+';
+    firstNum = 0;
+  }
+  else {
+    opps = '+';
+    secondNum += firstNum;
+    firstNum = 0;
+  }
+}
+
+subtraction.onclick = () => {
+  if (opps != '') {
+    result += operate(secondNum, firstNum, opps);
+    opps = '-';
+    firstNum = 0;
+  }
+  else {
+    opps = '-';
+    secondNum += firstNum;
+    firstNum = 0;
+  }
+}
+
+times.onclick = () => {
+  if (opps != '') {
+    result *= operate(secondNum, firstNum, opps);
+    opps = '*';
+    firstNum = 0;
+  }
+  else {
+    opps = '*';
+    secondNum += firstNum;
+    firstNum = 0;
+  }
+}
+
+division.onclick = () => {
+  if (opps != '') {
+    result /= operate(secondNum, firstNum, opps);
+    opps = '/';
+    firstNum = 0;
+  }
+  else {
+    opps = '/';
+    secondNum = firstNum;
+    firstNum = 0;
+  }
+}
+
+equals.onclick = () => {
+  if (repeat == true) {
+    result = operate(result, firstNum, opps);
+    display.textContent = Math.round(result);
+  }
+  else {
+    result += operate(secondNum, firstNum, opps);
+    display.textContent = Math.round(result);
+  }
+
+  repeat = true;
+}
+
+// Clear button
+
+clearButton = document.querySelector('.clear');
+decimalPoint = document.querySelector('.decimal');
+
+clearButton.onclick = () => {
+  firstNum = 0;
+  secondNum = 0;
+  result = 0;
+  repeat = false;
+  opps = '';
+  display.textContent = firstNum;
+}
+
+
+
 
 
 
